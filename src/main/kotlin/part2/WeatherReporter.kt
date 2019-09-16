@@ -1,14 +1,9 @@
 import javax.inject.*
 
-class WeatherReporter @Inject
-constructor(
-    private val weatherService: WeatherService,
-    private val locationManager: LocationManager
-) {
-
+class WeatherReporter @Inject constructor(private val weatherService: WeatherService, private val locationManager: LocationManager) {
     fun report() {
-        // locationManager.getCurrentLocation()
-        // weatherService.getConditionsAt(currentLocation)
-        System.out.println("Mostly clouded, 26 C\n")
+        println("hello from weather reporter, whose dependency is SOME weather service below...")
+        weatherService.getConditions()
+        locationManager.getCurrentLocation()
     }
 }

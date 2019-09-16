@@ -1,1 +1,3 @@
-interface WeatherService
+interface WeatherService{
+    fun getConditions()
+}

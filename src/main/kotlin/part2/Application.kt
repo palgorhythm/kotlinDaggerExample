@@ -9,18 +9,13 @@ internal interface AppComponent {
 object Application {
     @JvmStatic
     fun main(args: Array<String>) {
-//        if (args.size < 1) {
-//            System.out.println("You must provide an API key\n")
-//            return
-//        }
+        //if we're just using the WC module, it has a no-argument constructor so we can get away with just using DAC.create()
+        val component = DaggerAppComponent.create()
 
-//        val apiKey = args[0]
-//        val yahoo = YahooWeatherModule(apiKey)
-        val wc = WeatherChannelModule()
+        // if we're using the Yahoo Weather Module, we need to supply a greeting to it, so we need to instantiate it using the code below.
+//        val weatherModule = YahooWeatherModule("wassup") // use these two lines for Yahoo weather module
+//        val component = DaggerAppComponent.builder().yahooWeatherModule(weatherModule).build()
 
-        val component = DaggerAppComponent.builder()
-            .weatherChannelModule(wc)
-            .build()
         val reporter = component.weatherReporter
         reporter.report()
     }
